@@ -53,7 +53,7 @@
     justify-content: space-around;
     align-items: flex-start;
     padding-top: 6px;
-    padding-bottom: 8px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
     background: var(--surface);
     border-top: 0.5px solid var(--separator);
     z-index: 100;
