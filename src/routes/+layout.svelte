@@ -173,5 +173,6 @@
     flex: 1;
     padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
     padding-bottom: 60px;
+    background: var(--bg);
   }
 </style>
