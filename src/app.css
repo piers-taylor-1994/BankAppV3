@@ -42,7 +42,13 @@ html, body {
 }
 
 html {
-  background: var(--surface);
+  background: #2c2c2e;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    background: #ffffff;
+  }
 }
 
 body {
