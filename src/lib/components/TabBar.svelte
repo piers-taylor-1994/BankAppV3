@@ -51,9 +51,9 @@
     right: 0;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: calc(49px + env(safe-area-inset-bottom));
-    padding-bottom: env(safe-area-inset-bottom);
+    align-items: flex-start;
+    height: calc(49px + env(safe-area-inset-bottom, 0px));
+    padding-top: 6px;
     background: var(--surface);
     border-top: 0.5px solid var(--separator);
     z-index: 100;
