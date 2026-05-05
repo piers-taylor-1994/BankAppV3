@@ -46,7 +46,7 @@
 <style>
   .tab-bar {
     position: fixed;
-    bottom: 0;
+    bottom: -34px;
     left: 0;
     right: 0;
     display: flex;
