@@ -15,7 +15,7 @@
   }
 </script>
 
-<nav class="tab-bar safe-area-bottom">
+<nav class="tab-bar">
   {#each tabs as tab}
     <button
       class="tab-item"
