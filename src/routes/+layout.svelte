@@ -124,10 +124,12 @@
     </div>
   {/if}
 {:else}
-  <main class="app-content">
-    {@render children()}
-  </main>
-  <TabBar />
+  <div class="app-shell">
+    <main class="app-content">
+      {@render children()}
+    </main>
+    <TabBar />
+  </div>
 {/if}
 
 <style>
@@ -161,8 +163,14 @@
     font-size: 14px;
   }
 
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
   .app-content {
-    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+    flex: 1;
     padding-top: env(safe-area-inset-top);
   }
 </style>
