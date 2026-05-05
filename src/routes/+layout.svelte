@@ -171,6 +171,7 @@
 
   .app-content {
     flex: 1;
-    padding-top: env(safe-area-inset-top, 20px);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
+    padding-bottom: 60px;
   }
 </style>

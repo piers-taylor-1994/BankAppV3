@@ -41,16 +41,6 @@ html, body {
   height: 100%;
 }
 
-html {
-  background: #2c2c2e;
-}
-
-@media (prefers-color-scheme: light) {
-  html {
-    background: #ffffff;
-  }
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
   font-size: 17px;
