@@ -2,9 +2,9 @@
   import { page } from '$app/state';
   import { goto } from '$app/navigation';
   import { base } from '$app/paths';
-  import { cards } from '$lib/stores/cards';
+  import { cards } from '$lib/stores/cards.svelte';
   import { saveCards } from '$lib/services/saveCards';
-  import type { Card } from '$lib/stores/cards';
+  import type { Card } from '$lib/stores/cards.svelte';
 
   let showCvv = $state(false);
   let showPin = $state(false);

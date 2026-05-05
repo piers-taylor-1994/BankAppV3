@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { theme } from '$lib/stores/theme';
-  import type { Theme } from '$lib/stores/theme';
+  import { theme } from '$lib/stores/theme.svelte';
+  import type { Theme } from '$lib/stores/theme.svelte';
   import { clearAll } from '$lib/services/storage';
-  import { lock } from '$lib/stores/auth';
-  import { cards } from '$lib/stores/cards';
+  import { lock } from '$lib/stores/auth.svelte';
+  import { cards } from '$lib/stores/cards.svelte';
 
   let confirmReset = $state(false);
   const themes: Theme[] = ['system', 'light', 'dark'];

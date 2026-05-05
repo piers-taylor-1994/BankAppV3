@@ -1,4 +1,4 @@
-import { cards } from '$lib/stores/cards';
+import { cards } from '$lib/stores/cards.svelte';
 import { getItem, setItem } from '$lib/services/storage';
 import { importKey, encrypt } from '$lib/services/crypto';
 

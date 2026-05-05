@@ -1,9 +1,9 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { base } from '$app/paths';
-  import { auth, lock, unlock } from '$lib/stores/auth';
-  import { cards } from '$lib/stores/cards';
-  import { initTheme } from '$lib/stores/theme';
+  import { auth, lock, unlock } from '$lib/stores/auth.svelte';
+  import { cards } from '$lib/stores/cards.svelte';
+  import { initTheme } from '$lib/stores/theme.svelte';
   import { isAvailable, authenticate, register } from '$lib/services/webauthn';
   import { getItem, setItem } from '$lib/services/storage';
   import { generateKey, exportKey, importKey, decrypt, encrypt } from '$lib/services/crypto';

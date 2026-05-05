@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { base } from '$app/paths';
-  import { cards } from '$lib/stores/cards';
+  import { cards } from '$lib/stores/cards.svelte';
   import { saveCards } from '$lib/services/saveCards';
 
   let bank = $state('');
