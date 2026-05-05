@@ -52,8 +52,8 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    height: calc(49px + env(safe-area-inset-bottom, 0px));
     padding-top: 6px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     background: var(--surface);
     border-top: 0.5px solid var(--separator);
     z-index: 100;
