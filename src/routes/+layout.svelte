@@ -4,7 +4,7 @@
   import { auth, lock, unlock } from '$lib/stores/auth';
   import { cards } from '$lib/stores/cards';
   import { initTheme } from '$lib/stores/theme';
-  import { isAvailable, authenticate } from '$lib/services/webauthn';
+  import { isAvailable, authenticate, register } from '$lib/services/webauthn';
   import { getItem, setItem } from '$lib/services/storage';
   import { generateKey, exportKey, importKey, decrypt, encrypt } from '$lib/services/crypto';
   import LockScreen from '$lib/components/LockScreen.svelte';
@@ -33,21 +33,42 @@
   }
 
   async function checkAuth() {
-    const available = await isAvailable();
+    const available = isAvailable();
     auth.webauthnAvailable = available;
-    const credId = localStorage.getItem('bankapp_credential');
+    const credId = localStorage.getItem('bankapp_credential_id');
     auth.registered = !!credId;
+    const hasPin = !!localStorage.getItem('bankapp_pin_hash');
+    // First use: no auth set up yet, go straight in
+    if (!credId && !hasPin) {
+      await loadCards();
+      unlock();
+    }
   }
 
   async function handleUnlock() {
     try {
-      const success = await authenticate();
-      if (success) {
-        await loadCards();
-        unlock();
+      if (!auth.registered) {
+        // First time with biometrics: register a passkey
+        const success = await register('user');
+        if (success) {
+          auth.registered = true;
+          await loadCards();
+          unlock();
+        } else {
+          pinFallback = true;
+        }
+      } else {
+        const success = await authenticate();
+        if (success) {
+          await loadCards();
+          unlock();
+        } else {
+          pinFallback = true;
+        }
       }
     } catch (e) {
       console.error('Auth failed', e);
+      pinFallback = true;
     }
   }
 
@@ -93,13 +114,13 @@
   <LockScreen
     onfaceId={handleUnlock}
     onPinFallback={() => pinFallback = true}
-    showFallback={!auth.webauthnAvailable || pinFallback}
+    showFallback={true}
   />
-  {#if pinFallback || !auth.webauthnAvailable}
+  {#if pinFallback}
     <div class="pin-entry">
-      <input type="password" inputmode="numeric" maxlength="4" placeholder="Enter PIN" bind:value={pinInput} />
+      <input type="password" inputmode="numeric" maxlength="4" placeholder="Enter 4-digit PIN" bind:value={pinInput} />
       {#if pinError}<p class="error">{pinError}</p>{/if}
-      <button class="btn-primary" onclick={handlePinUnlock}>Unlock</button>
+      <button class="btn btn-accent" onclick={handlePinUnlock}>Unlock</button>
     </div>
   {/if}
 {:else}
